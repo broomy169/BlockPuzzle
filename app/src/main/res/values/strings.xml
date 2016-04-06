@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Block Puzzle</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_car_puzzle">Car Puzzle</string>
+    <string name="title_activity_boat_puzzle">Boat Puzzle</string>
+    <string name="title_activity_animal_puzzle">Animal Puzzle</string>
+    <string name="choosePuzzle">Choose Puzzle:</string>
+    <string name="animalPuzzles">Animal Puzzles</string>
+</resources>
