@@ -6,4 +6,5 @@
     <string name="title_activity_animal_puzzle">Animal Puzzle</string>
     <string name="choosePuzzle">Choose Puzzle:</string>
     <string name="animalPuzzles">Animal Puzzles</string>
+    <string name="title_activity_car_puzzle1">Blue Car Puzzle</string>
 </resources>

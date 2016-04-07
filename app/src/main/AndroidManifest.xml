@@ -29,8 +29,13 @@
             android:name=".animalPuzzle"
             android:label="@string/title_activity_animal_puzzle" >
         </activity>
-        <activity android:name=".settings"
-            android:label="@string/action_settings">
+        <activity
+            android:name=".settings"
+            android:label="@string/action_settings" >
+        </activity>
+        <activity
+            android:name=".carPuzzle1"
+            android:label="@string/title_activity_car_puzzle1" >
         </activity>
     </application>
 
