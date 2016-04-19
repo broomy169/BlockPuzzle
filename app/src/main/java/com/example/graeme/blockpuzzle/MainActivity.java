@@ -1,6 +1,7 @@
 package com.example.graeme.blockpuzzle;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -12,8 +13,9 @@ import android.widget.ListView;
 
 public class MainActivity extends ActionBarActivity {
 
+    private Intent intent = null;
 
-    Intent intent = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +67,9 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             intent = new Intent(getApplicationContext(), settings.class);
+            startActivity(intent);
+        } else if (id == R.id.action_highscore) {
+            intent = new Intent(getApplicationContext(), highscores.class);
             startActivity(intent);
         }
 

@@ -1,14 +1,16 @@
 package com.example.graeme.blockpuzzle;
 
-import android.graphics.drawable.Drawable;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.TimerTask;
 
 public class carPuzzle1 extends ActionBarActivity implements View.OnClickListener {
 
@@ -17,10 +19,17 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
     private ImageView imageCarBLeft;
     private ImageView imageCarBRight;
 
-    public int count = 1;
-    public int count2 = 2;
-    public int count3 = 3;
-    public int count4 = 0;
+    private int count = 1;
+    private int count2 = 2;
+    private int count3 = 3;
+    private int count4 = 0;
+
+    //timing
+    private long startTime;
+    private long endTime;
+    private long elapsed;
+    private double duration;
+
 
     private int[] images = {R.drawable.blue_car_tleft, R.drawable.blue_car_tright,
             R.drawable.blue_car_bleft, R.drawable.blue_car_bright};
@@ -45,13 +54,14 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
         for (int x : images) imageList.add(x);
         Collections.shuffle(imageList);
 
-        //get name to compare with
         imageCarTLeft.setImageResource((Integer) imageList.get(0));
         imageCarTRight.setImageResource((Integer) imageList.get(1));
         imageCarBLeft.setImageResource((Integer) imageList.get(2));
         imageCarBRight.setImageResource((Integer) imageList.get(3));
+        //starts timer
+        startTime = SystemClock.elapsedRealtime();
 
-
+        System.out.println(startTime);
     }
 
 
@@ -106,7 +116,6 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
     }
 
     public void check(){
-
         if (imageCarTLeft.getDrawable().getConstantState().equals
                 (getResources().getDrawable(R.drawable.blue_car_tleft).getConstantState()) &&
             imageCarTRight.getDrawable().getConstantState().equals
@@ -115,11 +124,40 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
                     (getResources().getDrawable(R.drawable.blue_car_bleft).getConstantState()) &&
             imageCarBRight.getDrawable().getConstantState().equals
                     (getResources().getDrawable(R.drawable.blue_car_bright).getConstantState())) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
-            toast.show();
-        } else {
-            System.out.println("Try Again");
+
+
+            //stops timer
+            endTime = SystemClock.elapsedRealtime();
+            System.out.println(endTime);
+            elapsed = endTime - startTime;
+            duration = elapsed / 1000.0;
+            showPopup();
+
         }
     }
+
+    public void showPopup() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setMessage("You have won!\n You have completed it in "+ duration + " seconds!");
+        dialog.setTitle("Game Over");
+        dialog.setPositiveButton("Menu", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        dialog.setNegativeButton("Retry", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+                startActivity(getIntent());
+            }
+        });
+        dialog.setCancelable(false);
+        dialog.create();
+        dialog.show();
+
+    }
+
 
 }

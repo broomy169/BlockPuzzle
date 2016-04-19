@@ -7,4 +7,6 @@
     <string name="choosePuzzle">Choose Puzzle:</string>
     <string name="animalPuzzles">Animal Puzzles</string>
     <string name="title_activity_car_puzzle1">Blue Car Puzzle</string>
+    <string name="action_highscore">High Scores</string>
+    <string name="title_activity_highscores">High Scores</string>
 </resources>
