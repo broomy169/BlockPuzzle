@@ -1,14 +1,13 @@
 package com.example.graeme.blockpuzzle;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class carPuzzle1 extends ActionBarActivity implements View.OnClickListener {
@@ -26,12 +25,7 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
     private int[] images = {R.drawable.blue_car_tleft, R.drawable.blue_car_tright,
             R.drawable.blue_car_bleft, R.drawable.blue_car_bright};
 
-    private int[] secret = {1,2,3,4};
-
-
     private ArrayList imageList = new ArrayList();
-
-    private int[] imageCheck = {0, 0, 0, 0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,20 +43,14 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
         imageCarBRight.setOnClickListener(this);
 
         for (int x : images) imageList.add(x);
-
         Collections.shuffle(imageList);
 
         //get name to compare with
-        System.out.println(getResources().getResourceEntryName(R.drawable.blue_car_bleft));
-
         imageCarTLeft.setImageResource((Integer) imageList.get(0));
-        imageCheck[0] = (Integer) imageList.get(0);
         imageCarTRight.setImageResource((Integer) imageList.get(1));
-        imageCheck[1] = (Integer) imageList.get(1);
         imageCarBLeft.setImageResource((Integer) imageList.get(2));
-        imageCheck[2] = (Integer) imageList.get(2);
         imageCarBRight.setImageResource((Integer) imageList.get(3));
-        imageCheck[3] = (Integer) imageList.get(3);
+
 
     }
 
@@ -78,11 +66,6 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
                 } else {
                     count = 0;
                 }
-
-                imageCheck[0] = (Integer) imageList.get(count);
-
-                System.out.println("Image: " + Arrays.toString(images));
-                System.out.println("Image Check: " + Arrays.toString(imageCheck));
                 check();
                 break;
 
@@ -94,10 +77,6 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
                 } else {
                     count2 = 0;
                 }
-
-                imageCheck[1] = (Integer) imageList.get(count2);
-                System.out.println("Image:" + Arrays.toString(images));
-                System.out.println("Image Check:" + Arrays.toString(imageCheck));
                 check();
                 break;
 
@@ -109,10 +88,6 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
                 } else {
                     count3 = 0;
                 }
-
-                imageCheck[2] = (Integer) imageList.get(count3);
-                System.out.println("Image:" + Arrays.toString(images));
-                System.out.println("Image Check:" + Arrays.toString(imageCheck));
                 check();
                 break;
 
@@ -124,10 +99,6 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
                 } else {
                     count4 = 0;
                 }
-
-                imageCheck[3] = (Integer) imageList.get(count4);
-                System.out.println("Image:" + Arrays.toString(images));
-                System.out.println("Image Check:" + Arrays.toString(imageCheck));
                 check();
                 break;
         }
@@ -135,7 +106,15 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
     }
 
     public void check(){
-        if (Arrays.equals(imageCheck, images)) {
+
+        if (imageCarTLeft.getDrawable().getConstantState().equals
+                (getResources().getDrawable(R.drawable.blue_car_tleft).getConstantState()) &&
+            imageCarTRight.getDrawable().getConstantState().equals
+                    (getResources().getDrawable(R.drawable.blue_car_tright).getConstantState()) &&
+            imageCarBLeft.getDrawable().getConstantState().equals
+                    (getResources().getDrawable(R.drawable.blue_car_bleft).getConstantState()) &&
+            imageCarBRight.getDrawable().getConstantState().equals
+                    (getResources().getDrawable(R.drawable.blue_car_bright).getConstantState())) {
             Toast toast = Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT);
             toast.show();
         } else {
