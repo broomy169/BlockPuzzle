@@ -5,7 +5,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.graeme.blockpuzzle.carPuzzle1">
+    tools:context="com.example.graeme.blockpuzzle.carPuzzle3">
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageCarIcon"
-        android:src="@drawable/blue_car_icon"
+        android:src="@drawable/red_car_icon"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="79dp" />
@@ -32,14 +32,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageCarBLeft"
         android:layout_alignStart="@+id/textView5"
-        android:src="@drawable/blue_car_bleft"
+        android:src="@drawable/red_car_bleft"
         android:layout_alignParentBottom="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageCarBRight"
-        android:src="@drawable/blue_car_bright"
+        android:src="@drawable/red_car_bright"
         android:layout_toEndOf="@+id/imageCarBLeft"
         android:layout_below="@+id/imageCarTLeft"
         android:layout_alignParentBottom="true" />
@@ -50,7 +50,7 @@
         android:id="@+id/imageCarTLeft"
         android:layout_above="@+id/imageCarBLeft"
         android:layout_alignStart="@+id/imageCarBLeft"
-        android:src="@drawable/blue_car_tleft" />
+        android:src="@drawable/red_car_tleft" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -59,6 +59,6 @@
         android:layout_alignTop="@+id/imageCarTLeft"
         android:layout_alignStart="@+id/imageCarBRight"
         android:layout_alignEnd="@+id/imageCarBRight"
-        android:src="@drawable/blue_car_tright" />
+        android:src="@drawable/red_car_tright" />
 
 </RelativeLayout>

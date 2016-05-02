@@ -1,5 +1,6 @@
 package com.example.graeme.blockpuzzle;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class animalPuzzle extends ActionBarActivity {
+
+    Intent intent = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +29,17 @@ public class animalPuzzle extends ActionBarActivity {
 
                 switch (position) {
                     case 0:
-
+                        intent = new Intent(getApplicationContext(), animalPuzzle1.class);
+                        startActivity(intent);
+                        break;
                     case 1:
-
+                        intent = new Intent(getApplicationContext(), animalPuzzle2.class);
+                        startActivity(intent);
+                        break;
                     case 2:
-
+                        intent = new Intent(getApplicationContext(), animalPuzzle3.class);
+                        startActivity(intent);
+                        break;
                 }
             }
         });

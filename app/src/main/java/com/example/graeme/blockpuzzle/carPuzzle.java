@@ -40,9 +40,13 @@ public class carPuzzle extends ActionBarActivity {
                         startActivity(intent);
                         break;
                     case 1:
-
+                        intent = new Intent(getApplicationContext(), carPuzzle2.class);
+                        startActivity(intent);
+                        break;
                     case 2:
-
+                        intent = new Intent(getApplicationContext(), carPuzzle3.class);
+                        startActivity(intent);
+                        break;
                 }
             }
         });

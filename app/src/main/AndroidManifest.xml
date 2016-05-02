@@ -38,8 +38,28 @@
             android:label="@string/title_activity_car_puzzle1" >
         </activity>
         <activity
+            android:name=".carPuzzle2"
+            android:label="@string/title_activity_car_puzzle2" >
+        </activity>
+        <activity
             android:name=".highscores"
             android:label="@string/title_activity_highscores" >
+        </activity>
+        <activity
+            android:name=".carPuzzle3"
+            android:label="@string/title_activity_car_puzzle3" >
+        </activity>
+        <activity
+            android:name=".animalPuzzle1"
+            android:label="@string/title_activity_animal_puzzle1" >
+        </activity>
+        <activity
+            android:name=".animalPuzzle2"
+            android:label="@string/title_activity_animal_puzzle2" >
+        </activity>
+        <activity
+            android:name=".animalPuzzle3"
+            android:label="@string/title_activity_animal_puzzle3" >
         </activity>
     </application>
 

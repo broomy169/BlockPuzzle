@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         ListView listView = (ListView) findViewById(R.id.listView);
-        String menu[] = {"Car Puzzles", "Animal Puzzles", "Boat Puzzles"};
+        String menu[] = {"Car Puzzles", "Animal Puzzles"};
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_menu, menu);
         listView.setAdapter(arrayAdapter);
@@ -38,10 +38,6 @@ public class MainActivity extends ActionBarActivity {
                         break;
                     case 1:
                         intent = new Intent(getApplicationContext(), animalPuzzle.class);
-                        startActivity(intent);
-                        break;
-                    case 2:
-                        intent = new Intent(getApplicationContext(), boatPuzzle.class);
                         startActivity(intent);
                         break;
                 }

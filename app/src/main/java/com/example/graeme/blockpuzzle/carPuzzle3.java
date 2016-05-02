@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class carPuzzle1 extends ActionBarActivity implements View.OnClickListener {
+public class carPuzzle3 extends ActionBarActivity implements View.OnClickListener {
 
     private ImageView imageCarTLeft;
     private ImageView imageCarTRight;
@@ -31,15 +31,15 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
     private double duration;
 
 
-    private int[] images = {R.drawable.blue_car_tleft, R.drawable.blue_car_tright,
-            R.drawable.blue_car_bleft, R.drawable.blue_car_bright};
+    private int[] images = {R.drawable.red_car_tleft, R.drawable.red_car_tright,
+            R.drawable.red_car_bleft, R.drawable.red_car_bright};
 
     private ArrayList imageList = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_car_puzzle1);
+        setContentView(R.layout.activity_car_puzzle3);
 
         imageCarTLeft = (ImageView) findViewById(R.id.imageCarTLeft);
         imageCarTRight = (ImageView) findViewById(R.id.imageCarTRight);
@@ -117,15 +117,15 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
     public void check(){
 
         System.out.println("Comparing: " + (imageCarTLeft.getDrawable() ==
-                getResources().getDrawable(R.drawable.blue_car_tleft)));
+                getResources().getDrawable(R.drawable.red_car_tleft)));
         if (imageCarTLeft.getDrawable().getConstantState().equals
-                (getResources().getDrawable(R.drawable.blue_car_tleft).getConstantState()) &&
-            imageCarTRight.getDrawable().getConstantState().equals
-                    (getResources().getDrawable(R.drawable.blue_car_tright).getConstantState()) &&
-            imageCarBLeft.getDrawable().getConstantState().equals
-                    (getResources().getDrawable(R.drawable.blue_car_bleft).getConstantState()) &&
-            imageCarBRight.getDrawable().getConstantState().equals
-                    (getResources().getDrawable(R.drawable.blue_car_bright).getConstantState())) {
+                (getResources().getDrawable(R.drawable.red_car_tleft).getConstantState()) &&
+                imageCarTRight.getDrawable().getConstantState().equals
+                        (getResources().getDrawable(R.drawable.red_car_tright).getConstantState()) &&
+                imageCarBLeft.getDrawable().getConstantState().equals
+                        (getResources().getDrawable(R.drawable.red_car_bleft).getConstantState()) &&
+                imageCarBRight.getDrawable().getConstantState().equals
+                        (getResources().getDrawable(R.drawable.red_car_bright).getConstantState())) {
 
 
             //stops timer

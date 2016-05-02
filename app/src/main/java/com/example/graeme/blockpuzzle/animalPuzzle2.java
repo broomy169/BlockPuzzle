@@ -12,12 +12,13 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class carPuzzle1 extends ActionBarActivity implements View.OnClickListener {
+public class animalPuzzle2 extends ActionBarActivity implements View.OnClickListener{
 
-    private ImageView imageCarTLeft;
-    private ImageView imageCarTRight;
-    private ImageView imageCarBLeft;
-    private ImageView imageCarBRight;
+
+    private ImageView imageAnimalTLeft;
+    private ImageView imageAnimalTRight;
+    private ImageView imageAnimalBLeft;
+    private ImageView imageAnimalBRight;
 
     private int count = 1;
     private int count2 = 2;
@@ -31,33 +32,33 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
     private double duration;
 
 
-    private int[] images = {R.drawable.blue_car_tleft, R.drawable.blue_car_tright,
-            R.drawable.blue_car_bleft, R.drawable.blue_car_bright};
+    private int[] images = {R.drawable.elk_tleft, R.drawable.elk_tright,
+            R.drawable.elk_bleft, R.drawable.elk_bright};
 
     private ArrayList imageList = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_car_puzzle1);
+        setContentView(R.layout.activity_animal_puzzle2);
 
-        imageCarTLeft = (ImageView) findViewById(R.id.imageCarTLeft);
-        imageCarTRight = (ImageView) findViewById(R.id.imageCarTRight);
-        imageCarBLeft = (ImageView) findViewById(R.id.imageCarBLeft);
-        imageCarBRight = (ImageView) findViewById(R.id.imageCarBRight);
+        imageAnimalTLeft = (ImageView) findViewById(R.id.imageAnimalTLeft);
+        imageAnimalTRight = (ImageView) findViewById(R.id.imageAnimalTRight);
+        imageAnimalBLeft = (ImageView) findViewById(R.id.imageAnimalBLeft);
+        imageAnimalBRight = (ImageView) findViewById(R.id.imageAnimalBRight);
 
-        imageCarTLeft.setOnClickListener(this);
-        imageCarTRight.setOnClickListener(this);
-        imageCarBLeft.setOnClickListener(this);
-        imageCarBRight.setOnClickListener(this);
+        imageAnimalTLeft.setOnClickListener(this);
+        imageAnimalTRight.setOnClickListener(this);
+        imageAnimalBLeft.setOnClickListener(this);
+        imageAnimalBRight.setOnClickListener(this);
 
         for (int x : images) imageList.add(x);
         Collections.shuffle(imageList);
 
-        imageCarTLeft.setImageResource((Integer) imageList.get(0));
-        imageCarTRight.setImageResource((Integer) imageList.get(1));
-        imageCarBLeft.setImageResource((Integer) imageList.get(2));
-        imageCarBRight.setImageResource((Integer) imageList.get(3));
+        imageAnimalTLeft.setImageResource((Integer) imageList.get(0));
+        imageAnimalTRight.setImageResource((Integer) imageList.get(1));
+        imageAnimalBLeft.setImageResource((Integer) imageList.get(2));
+        imageAnimalBRight.setImageResource((Integer) imageList.get(3));
         //starts timer
         startTime = SystemClock.elapsedRealtime();
 
@@ -67,8 +68,8 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.imageCarTLeft:
-                imageCarTLeft.setImageResource((Integer) imageList.get(count));
+            case R.id.imageAnimalTLeft:
+                imageAnimalTLeft.setImageResource((Integer) imageList.get(count));
 
                 if (count < imageList.size() -1) {
                     ++count;
@@ -78,8 +79,8 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
                 check();
                 break;
 
-            case R.id.imageCarTRight:
-                imageCarTRight.setImageResource((Integer) imageList.get(count2));
+            case R.id.imageAnimalTRight:
+                imageAnimalTRight.setImageResource((Integer) imageList.get(count2));
 
                 if (count2 < imageList.size() -1) {
                     ++count2;
@@ -89,8 +90,8 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
                 check();
                 break;
 
-            case R.id.imageCarBLeft:
-                imageCarBLeft.setImageResource((Integer) imageList.get(count3));
+            case R.id.imageAnimalBLeft:
+                imageAnimalBLeft.setImageResource((Integer) imageList.get(count3));
 
                 if (count3 < imageList.size() -1) {
                     ++count3;
@@ -100,8 +101,8 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
                 check();
                 break;
 
-            case R.id.imageCarBRight:
-                imageCarBRight.setImageResource((Integer) imageList.get(count4));
+            case R.id.imageAnimalBRight:
+                imageAnimalBRight.setImageResource((Integer) imageList.get(count4));
 
                 if (count4 < imageList.size() -1) {
                     ++count4;
@@ -116,16 +117,14 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
 
     public void check(){
 
-        System.out.println("Comparing: " + (imageCarTLeft.getDrawable() ==
-                getResources().getDrawable(R.drawable.blue_car_tleft)));
-        if (imageCarTLeft.getDrawable().getConstantState().equals
-                (getResources().getDrawable(R.drawable.blue_car_tleft).getConstantState()) &&
-            imageCarTRight.getDrawable().getConstantState().equals
-                    (getResources().getDrawable(R.drawable.blue_car_tright).getConstantState()) &&
-            imageCarBLeft.getDrawable().getConstantState().equals
-                    (getResources().getDrawable(R.drawable.blue_car_bleft).getConstantState()) &&
-            imageCarBRight.getDrawable().getConstantState().equals
-                    (getResources().getDrawable(R.drawable.blue_car_bright).getConstantState())) {
+        if (imageAnimalTLeft.getDrawable().getConstantState().equals
+                (getResources().getDrawable(R.drawable.elk_tleft).getConstantState()) &&
+                imageAnimalTRight.getDrawable().getConstantState().equals
+                        (getResources().getDrawable(R.drawable.elk_tright).getConstantState()) &&
+                imageAnimalBLeft.getDrawable().getConstantState().equals
+                        (getResources().getDrawable(R.drawable.elk_bleft).getConstantState()) &&
+                imageAnimalBRight.getDrawable().getConstantState().equals
+                        (getResources().getDrawable(R.drawable.elk_bright).getConstantState())) {
 
 
             //stops timer
