@@ -10,30 +10,25 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class Database extends SQLiteOpenHelper{
 
+    private static int VERSION = 1;
+
     public Database(Context context) {
-        super(context, "PuzzleData", null, 1);
+        super(context, "CarScores", null, VERSION);
+    }
+
+    public Cursor getAllCursor() {
+        return getReadableDatabase().rawQuery("SELECT * FROM CarScores ORDER BY name;", null);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        setup(db);
+        db.execSQL("CREATE TABLE CarScores (_id INTEGER PRIMARY KEY, name TEXT, time INTEGER, date TEXT);");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        setup(db);
-    }
-
-    private void setup(SQLiteDatabase db) {
-        db.execSQL("DROP TABLE IF EXISTS Car_Scores;");
-        db.execSQL("CREATE TABLE Car_Scores (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, time DOUBLE);");
-
-        db.execSQL("INSERT INTO Car_Scores (name, time) VALUES (\"Blue Car\", 6.9);");
-        db.execSQL("INSERT INTO Car_Scores (name, time) VALUES (\"Blue Car\", 9.6);");
-    }
-
-    public Cursor getAllCursor() {
-        return getReadableDatabase().rawQuery("SELECT * FROM Car_Scores;", null);
+        db.execSQL("DROP TABLE IF EXISTS CarScores;");
+        onCreate(db);
     }
 
 

@@ -2,6 +2,8 @@ package com.example.graeme.blockpuzzle;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
@@ -12,7 +14,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class carPuzzle1 extends ActionBarActivity implements View.OnClickListener {
+public class carPuzzle1 extends ActionBarActivity implements View.OnClickListener  {
 
     private ImageView imageCarTLeft;
     private ImageView imageCarTRight;
@@ -30,6 +32,8 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
     private long elapsed;
     private double duration;
 
+    private SQLiteDatabase db;
+    private Database dbHelper;
 
     private int[] images = {R.drawable.blue_car_tleft, R.drawable.blue_car_tright,
             R.drawable.blue_car_bleft, R.drawable.blue_car_bright};
@@ -40,6 +44,8 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_puzzle1);
+
+        dbHelper = new Database(this);
 
         imageCarTLeft = (ImageView) findViewById(R.id.imageCarTLeft);
         imageCarTRight = (ImageView) findViewById(R.id.imageCarTRight);
@@ -144,7 +150,7 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
 
     public void showPopup() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setMessage("You have won!\n You have completed it in "+ duration + " seconds!");
+        dialog.setMessage("You have won!\n You have completed it in " + duration + " seconds!");
         dialog.setTitle("Game Over");
         dialog.setPositiveButton("Back To Puzzles", new DialogInterface.OnClickListener() {
             @Override
@@ -162,6 +168,10 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
         dialog.setCancelable(false);
         dialog.create();
         dialog.show();
+
+        db = dbHelper.getWritableDatabase();
+        db.execSQL("INSERT INTO CarScores (name, time) VALUES (\"Blue Car\", " + duration + ");");
+
 
     }
 

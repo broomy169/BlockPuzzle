@@ -2,6 +2,7 @@ package com.example.graeme.blockpuzzle;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
@@ -30,6 +31,8 @@ public class carPuzzle3 extends ActionBarActivity implements View.OnClickListene
     private long elapsed;
     private double duration;
 
+    private SQLiteDatabase db;
+    private Database dbHelper;
 
     private int[] images = {R.drawable.red_car_tleft, R.drawable.red_car_tright,
             R.drawable.red_car_bleft, R.drawable.red_car_bright};
@@ -40,6 +43,8 @@ public class carPuzzle3 extends ActionBarActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_puzzle3);
+
+        dbHelper = new Database(this);
 
         imageCarTLeft = (ImageView) findViewById(R.id.imageCarTLeft);
         imageCarTRight = (ImageView) findViewById(R.id.imageCarTRight);
@@ -162,6 +167,9 @@ public class carPuzzle3 extends ActionBarActivity implements View.OnClickListene
         dialog.setCancelable(false);
         dialog.create();
         dialog.show();
+
+        db = dbHelper.getWritableDatabase();
+        db.execSQL("INSERT INTO CarScores (name, time) VALUES (\"Red Car\", " + duration + ");");
 
     }
 
