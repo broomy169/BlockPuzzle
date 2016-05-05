@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -144,7 +145,17 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
             elapsed = endTime - startTime;
             duration = elapsed / 1000.0;
             Log.i("GameOver", "Game Over");
+
+            long date = System.currentTimeMillis();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
+            String dateString = sdf.format(date);
+            System.out.println("Date: " + dateString);
+
+            db = dbHelper.getWritableDatabase();
+            db.execSQL("INSERT INTO Scores (name, time, date) VALUES (\"Gold Car\", " + duration + ", \"" + dateString + "\");");
+
             showPopup();
+
         } else {
             System.out.println("not working");
         }
@@ -153,7 +164,7 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
 
     public void showPopup() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setMessage("You have won!\n You have completed it in "+ duration + " seconds!");
+        dialog.setMessage("You have won!\n You have completed it in " + duration + " seconds!");
         dialog.setTitle("Game Over");
         dialog.setPositiveButton("Back To Puzzles", new DialogInterface.OnClickListener() {
             @Override
@@ -171,9 +182,6 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
         dialog.setCancelable(false);
         dialog.create();
         dialog.show();
-
-        db = dbHelper.getWritableDatabase();
-        db.execSQL("INSERT INTO CarScores (name, time) VALUES (\"Gold Car\", " + duration + ");");
 
     }
 }

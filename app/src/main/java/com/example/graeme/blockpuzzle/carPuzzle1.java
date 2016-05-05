@@ -11,8 +11,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 public class carPuzzle1 extends ActionBarActivity implements View.OnClickListener  {
 
@@ -46,6 +48,8 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
         setContentView(R.layout.activity_car_puzzle1);
 
         dbHelper = new Database(this);
+
+
 
         imageCarTLeft = (ImageView) findViewById(R.id.imageCarTLeft);
         imageCarTRight = (ImageView) findViewById(R.id.imageCarTRight);
@@ -141,7 +145,17 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
             elapsed = endTime - startTime;
             duration = elapsed / 1000.0;
             Log.i("GameOver", "Game Over");
+
+            long date = System.currentTimeMillis();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
+            String dateString = sdf.format(date);
+            System.out.println("Date: " + dateString);
+
+            db = dbHelper.getWritableDatabase();
+            db.execSQL("INSERT INTO Scores (name, time, date) VALUES (\"Blue Car\", " + duration + ", \"" + dateString + "\");");
+
             showPopup();
+
         } else {
             System.out.println("not working");
         }
@@ -168,11 +182,6 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
         dialog.setCancelable(false);
         dialog.create();
         dialog.show();
-
-        db = dbHelper.getWritableDatabase();
-        db.execSQL("INSERT INTO CarScores (name, time) VALUES (\"Blue Car\", " + duration + ");");
-
-
     }
 
 

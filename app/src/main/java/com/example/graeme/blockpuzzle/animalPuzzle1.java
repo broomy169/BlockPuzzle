@@ -2,6 +2,7 @@ package com.example.graeme.blockpuzzle;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -30,6 +32,8 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
     private long elapsed;
     private double duration;
 
+    private SQLiteDatabase db;
+    private Database dbHelper;
 
     private int[] images = {R.drawable.elephant_tleft, R.drawable.elephant_tright,
             R.drawable.elephant_bleft, R.drawable.elephant_bright};
@@ -40,6 +44,8 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animal_puzzle1);
+
+        dbHelper = new Database(this);
 
         imageAnimalTLeft = (ImageView) findViewById(R.id.imageAnimalTLeft);
         imageAnimalTRight = (ImageView) findViewById(R.id.imageAnimalTRight);
@@ -133,6 +139,15 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
             elapsed = endTime - startTime;
             duration = elapsed / 1000.0;
             Log.i("GameOver", "Game Over");
+
+            long date = System.currentTimeMillis();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
+            String dateString = sdf.format(date);
+            System.out.println("Date: " + dateString);
+
+            db = dbHelper.getWritableDatabase();
+            db.execSQL("INSERT INTO Scores (name, time, date) VALUES (\"Elephant\", " + duration + ", \"" + dateString + "\");");
+
             showPopup();
         } else {
             System.out.println("not working");
