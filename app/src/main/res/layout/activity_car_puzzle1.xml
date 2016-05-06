@@ -41,8 +41,8 @@
         android:id="@+id/imageCarBRight"
         android:src="@drawable/blue_car_bright"
         android:layout_toEndOf="@+id/imageCarBLeft"
-        android:layout_below="@+id/imageCarTLeft"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/imageCarTLeft" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -56,9 +56,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageCarTRight"
+        android:src="@drawable/blue_car_tright"
         android:layout_alignTop="@+id/imageCarTLeft"
-        android:layout_alignStart="@+id/imageCarBRight"
-        android:layout_alignEnd="@+id/imageCarBRight"
-        android:src="@drawable/blue_car_tright" />
+        android:layout_toEndOf="@+id/imageCarTLeft" />
 
 </RelativeLayout>

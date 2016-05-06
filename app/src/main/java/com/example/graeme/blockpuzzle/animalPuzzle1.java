@@ -26,7 +26,6 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
     private int count3 = 3;
     private int count4 = 0;
 
-    //timing
     private long startTime;
     private long endTime;
     private long elapsed;
@@ -64,14 +63,13 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
         imageAnimalTRight.setImageResource((Integer) imageList.get(1));
         imageAnimalBLeft.setImageResource((Integer) imageList.get(2));
         imageAnimalBRight.setImageResource((Integer) imageList.get(3));
-        //starts timer
+
         startTime = SystemClock.elapsedRealtime();
 
         System.out.println(startTime);
     }
 
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.imageAnimalTLeft:
                 imageAnimalTLeft.setImageResource((Integer) imageList.get(count));
@@ -117,11 +115,9 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
                 check();
                 break;
         }
-
     }
 
     public void check(){
-        
         if (imageAnimalTLeft.getDrawable().getConstantState().equals
                 (getResources().getDrawable(R.drawable.elephant_tleft).getConstantState()) &&
                 imageAnimalTRight.getDrawable().getConstantState().equals
@@ -131,9 +127,6 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
                 imageAnimalBRight.getDrawable().getConstantState().equals
                         (getResources().getDrawable(R.drawable.elephant_bright).getConstantState())) {
 
-
-            //stops timer
-
             endTime = SystemClock.elapsedRealtime();
             System.out.println(endTime);
             elapsed = endTime - startTime;
@@ -141,7 +134,7 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
             Log.i("GameOver", "Game Over");
 
             long date = System.currentTimeMillis();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy k:m a");
             String dateString = sdf.format(date);
             System.out.println("Date: " + dateString);
 
@@ -154,10 +147,9 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
         }
     }
 
-
     public void showPopup() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setMessage("You have won!\n You have completed it in "+ duration + " seconds!");
+        dialog.setMessage("You have won!\n You have completed it in " + duration + " seconds!");
         dialog.setTitle("Game Over");
         dialog.setPositiveButton("Back To Puzzles", new DialogInterface.OnClickListener() {
             @Override
@@ -175,8 +167,5 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
         dialog.setCancelable(false);
         dialog.create();
         dialog.show();
-
     }
-
-
 }

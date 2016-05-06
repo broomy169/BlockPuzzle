@@ -26,7 +26,6 @@ public class animalPuzzle extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 switch (position) {
                     case 0:
                         intent = new Intent(getApplicationContext(), animalPuzzle1.class);
@@ -44,5 +43,4 @@ public class animalPuzzle extends ActionBarActivity {
             }
         });
     }
-
 }

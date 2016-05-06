@@ -30,6 +30,4 @@ public class Database extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS Scores;");
         onCreate(db);
     }
-
-
 }

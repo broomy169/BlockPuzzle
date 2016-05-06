@@ -8,7 +8,7 @@
     <string name="animalPuzzles">Animal Puzzles</string>
     <string name="title_activity_car_puzzle1">Blue Car Puzzle</string>
     <string name="action_highscore">High Scores</string>
-    <string name="title_activity_highscores">High Scores</string>
+    <string name="title_activity_statistics">Statistics</string>
     <string name="title_activity_car_puzzle2">Gold Car Puzzle</string>
     <string name="title_activity_car_puzzle3">Red Car Puzzle</string>
     <string name="title_activity_animal_puzzle1">Elephant Puzzle</string>

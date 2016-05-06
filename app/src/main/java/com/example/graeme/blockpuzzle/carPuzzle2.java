@@ -29,7 +29,6 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
     private int count3 = 3;
     private int count4 = 0;
 
-    //timing
     private long startTime;
     private long endTime;
     private long elapsed;
@@ -37,7 +36,6 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
 
     private SQLiteDatabase db;
     private Database dbHelper;
-
 
     private int[] images = {R.drawable.gold_car_tleft, R.drawable.gold_car_tright,
             R.drawable.gold_car_bleft, R.drawable.gold_car_bright};
@@ -68,7 +66,7 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
         imageCarTRight.setImageResource((Integer) imageList.get(1));
         imageCarBLeft.setImageResource((Integer) imageList.get(2));
         imageCarBRight.setImageResource((Integer) imageList.get(3));
-        //starts timer
+
         startTime = SystemClock.elapsedRealtime();
 
         System.out.println(startTime);
@@ -121,11 +119,9 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
                 check();
                 break;
         }
-
     }
 
     public void check(){
-
         System.out.println("Comparing: " + (imageCarTLeft.getDrawable() ==
                 getResources().getDrawable(R.drawable.gold_car_tleft)));
         if (imageCarTLeft.getDrawable().getConstantState().equals
@@ -137,9 +133,6 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
                 imageCarBRight.getDrawable().getConstantState().equals
                         (getResources().getDrawable(R.drawable.gold_car_bright).getConstantState())) {
 
-
-            //stops timer
-
             endTime = SystemClock.elapsedRealtime();
             System.out.println(endTime);
             elapsed = endTime - startTime;
@@ -147,7 +140,7 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
             Log.i("GameOver", "Game Over");
 
             long date = System.currentTimeMillis();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy k:m a");
             String dateString = sdf.format(date);
             System.out.println("Date: " + dateString);
 
@@ -155,12 +148,10 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
             db.execSQL("INSERT INTO Scores (name, time, date) VALUES (\"Gold Car\", " + duration + ", \"" + dateString + "\");");
 
             showPopup();
-
         } else {
             System.out.println("not working");
         }
     }
-
 
     public void showPopup() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -182,6 +173,5 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
         dialog.setCancelable(false);
         dialog.create();
         dialog.show();
-
     }
 }

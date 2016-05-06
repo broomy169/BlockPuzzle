@@ -1,23 +1,16 @@
 package com.example.graeme.blockpuzzle;
 
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import java.util.Random;
 
 public class carPuzzle extends ActionBarActivity {
 
     Intent intent = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +26,6 @@ public class carPuzzle extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 switch (position) {
                     case 0:
                         intent = new Intent(getApplicationContext(), carPuzzle1.class);
@@ -50,7 +42,5 @@ public class carPuzzle extends ActionBarActivity {
                 }
             }
         });
-
-
     }
 }

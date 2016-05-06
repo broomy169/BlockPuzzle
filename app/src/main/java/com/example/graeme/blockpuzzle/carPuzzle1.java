@@ -3,7 +3,6 @@ package com.example.graeme.blockpuzzle;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
@@ -14,7 +13,6 @@ import android.widget.ImageView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 
 public class carPuzzle1 extends ActionBarActivity implements View.OnClickListener  {
 
@@ -28,7 +26,6 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
     private int count3 = 3;
     private int count4 = 0;
 
-    //timing
     private long startTime;
     private long endTime;
     private long elapsed;
@@ -49,8 +46,6 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
 
         dbHelper = new Database(this);
 
-
-
         imageCarTLeft = (ImageView) findViewById(R.id.imageCarTLeft);
         imageCarTRight = (ImageView) findViewById(R.id.imageCarTRight);
         imageCarBLeft = (ImageView) findViewById(R.id.imageCarBLeft);
@@ -68,14 +63,13 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
         imageCarTRight.setImageResource((Integer) imageList.get(1));
         imageCarBLeft.setImageResource((Integer) imageList.get(2));
         imageCarBRight.setImageResource((Integer) imageList.get(3));
-        //starts timer
+
         startTime = SystemClock.elapsedRealtime();
 
         System.out.println(startTime);
     }
 
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.imageCarTLeft:
                 imageCarTLeft.setImageResource((Integer) imageList.get(count));
@@ -125,7 +119,6 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
     }
 
     public void check(){
-
         System.out.println("Comparing: " + (imageCarTLeft.getDrawable() ==
                 getResources().getDrawable(R.drawable.blue_car_tleft)));
         if (imageCarTLeft.getDrawable().getConstantState().equals
@@ -137,9 +130,6 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
             imageCarBRight.getDrawable().getConstantState().equals
                     (getResources().getDrawable(R.drawable.blue_car_bright).getConstantState())) {
 
-
-            //stops timer
-
             endTime = SystemClock.elapsedRealtime();
             System.out.println(endTime);
             elapsed = endTime - startTime;
@@ -147,7 +137,7 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
             Log.i("GameOver", "Game Over");
 
             long date = System.currentTimeMillis();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy k:m a");
             String dateString = sdf.format(date);
             System.out.println("Date: " + dateString);
 
@@ -155,12 +145,10 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
             db.execSQL("INSERT INTO Scores (name, time, date) VALUES (\"Blue Car\", " + duration + ", \"" + dateString + "\");");
 
             showPopup();
-
         } else {
             System.out.println("not working");
         }
     }
-
 
     public void showPopup() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -183,6 +171,4 @@ public class carPuzzle1 extends ActionBarActivity implements View.OnClickListene
         dialog.create();
         dialog.show();
     }
-
-
 }

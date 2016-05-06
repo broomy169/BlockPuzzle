@@ -16,7 +16,6 @@ import java.util.Collections;
 
 public class animalPuzzle3 extends ActionBarActivity implements View.OnClickListener {
 
-
     private ImageView imageAnimalTLeft;
     private ImageView imageAnimalTRight;
     private ImageView imageAnimalBLeft;
@@ -27,7 +26,6 @@ public class animalPuzzle3 extends ActionBarActivity implements View.OnClickList
     private int count3 = 3;
     private int count4 = 0;
 
-    //timing
     private long startTime;
     private long endTime;
     private long elapsed;
@@ -44,7 +42,7 @@ public class animalPuzzle3 extends ActionBarActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_animal_puzzle2);
+        setContentView(R.layout.activity_animal_puzzle3);
 
         dbHelper = new Database(this);
 
@@ -142,7 +140,7 @@ public class animalPuzzle3 extends ActionBarActivity implements View.OnClickList
             Log.i("GameOver", "Game Over");
 
             long date = System.currentTimeMillis();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy k:m a");
             String dateString = sdf.format(date);
             System.out.println("Date: " + dateString);
 
