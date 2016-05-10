@@ -37,6 +37,8 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
     private SQLiteDatabase db;
     private Database dbHelper;
 
+    private SoundSystem soundSystem;
+
     private int[] images = {R.drawable.gold_car_tleft, R.drawable.gold_car_tright,
             R.drawable.gold_car_bleft, R.drawable.gold_car_bright};
 
@@ -69,7 +71,7 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
 
         startTime = SystemClock.elapsedRealtime();
 
-        System.out.println(startTime);
+        soundSystem = new SoundSystem(this);
     }
 
     public void onClick(View v) {
@@ -173,5 +175,7 @@ public class carPuzzle2 extends ActionBarActivity implements View.OnClickListene
         dialog.setCancelable(false);
         dialog.create();
         dialog.show();
+        soundSystem.play(soundSystem.completedID);
+        soundSystem.play(soundSystem.goldcarID);
     }
 }

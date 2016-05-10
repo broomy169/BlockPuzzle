@@ -34,6 +34,8 @@ public class animalPuzzle3 extends ActionBarActivity implements View.OnClickList
     private SQLiteDatabase db;
     private Database dbHelper;
 
+    private SoundSystem soundSystem;
+
     private int[] images = {R.drawable.owl_tleft, R.drawable.owl_tright,
             R.drawable.owl_bleft, R.drawable.owl_bright};
 
@@ -66,7 +68,7 @@ public class animalPuzzle3 extends ActionBarActivity implements View.OnClickList
         //starts timer
         startTime = SystemClock.elapsedRealtime();
 
-        System.out.println(startTime);
+        soundSystem = new SoundSystem(this);
     }
 
     public void onClick(View v) {
@@ -174,7 +176,8 @@ public class animalPuzzle3 extends ActionBarActivity implements View.OnClickList
         dialog.setCancelable(false);
         dialog.create();
         dialog.show();
-
+        soundSystem.play(soundSystem.completedID);
+        soundSystem.play(soundSystem.owlID);
     }
 
 

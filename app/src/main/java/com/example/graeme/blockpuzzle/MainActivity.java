@@ -14,6 +14,8 @@ public class MainActivity extends ActionBarActivity {
 
     private Intent intent = null;
 
+    private SoundSystem soundSystem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch(position) {
+                switch (position) {
                     case 0:
                         intent = new Intent(getApplicationContext(), carPuzzle.class);
                         startActivity(intent);
@@ -44,5 +46,18 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         });
+
+        soundSystem = new SoundSystem(this);
+    }
+
+    @Override
+    protected void onPause(){
+        soundSystem.stop();
+        super.onPause();
+    }
+
+    protected void onResume(){
+        super.onResume();
+        soundSystem.start();
     }
 }

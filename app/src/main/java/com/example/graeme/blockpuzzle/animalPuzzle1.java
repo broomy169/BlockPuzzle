@@ -34,6 +34,8 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
     private SQLiteDatabase db;
     private Database dbHelper;
 
+    private SoundSystem soundSystem;
+
     private int[] images = {R.drawable.elephant_tleft, R.drawable.elephant_tright,
             R.drawable.elephant_bleft, R.drawable.elephant_bright};
 
@@ -66,7 +68,7 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
 
         startTime = SystemClock.elapsedRealtime();
 
-        System.out.println(startTime);
+        soundSystem = new SoundSystem(this);
     }
 
     public void onClick(View v) {
@@ -140,7 +142,6 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
 
             db = dbHelper.getWritableDatabase();
             db.execSQL("INSERT INTO Scores (name, time, date) VALUES (\"Elephant\", " + duration + ", \"" + dateString + "\");");
-
             showPopup();
         } else {
             System.out.println("not working");
@@ -167,5 +168,7 @@ public class animalPuzzle1 extends ActionBarActivity implements View.OnClickList
         dialog.setCancelable(false);
         dialog.create();
         dialog.show();
+        soundSystem.play(soundSystem.completedID);
+        soundSystem.play(soundSystem.elephantID);
     }
 }
